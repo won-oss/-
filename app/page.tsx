@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { getDistance } from '@/lib/distance'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function Home() {
   const [checkpoints, setCheckpoints] = useState<any[]>([])
@@ -81,10 +82,13 @@ export default function Home() {
 
       {/* 底部导航链接 */}
       <div className="mt-8 flex flex-col items-center gap-2">
-        <a href="/cloud" className="text-blue-500 underline">☁️ 去云打卡</a >
-        <a href="/stamps" className="text-blue-500 underline">🎫 去看集章</a >
-        <a href="/rank" className="text-blue-500 underline">🏆 去看排行榜</a >
-        <a href="/run" className="text-blue-500 underline">🏃 去跑步</a >
+        <Link href="/cloud" className="text-blue-500 underline">☁️ 去云打卡</Link>
+        <Link href="/stamps" className="text-blue-500 underline">🎫 去看集章</Link>
+        <Link href="/rank" className="text-blue-500 underline">🏆 去看排行榜</Link>
+        <Link href="/run" className="text-blue-500 underline">🏃 去跑步</Link>
+        <Link href="/team" className="text-indigo-500 underline">👥 组队巡游</Link>
+        <Link href="/medal" className="text-amber-500 underline">🎖️ 奖牌勋章</Link>
+        <Link href="/shop" className="text-purple-500 underline">🏺 文创商店</Link>
       </div>
     </main>
   )

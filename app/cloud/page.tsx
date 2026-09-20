@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
+import Link from 'next/link' // 新增这一行
 
 export default function CloudCheckIn() {
   const [story, setStory] = useState('')
@@ -10,12 +11,11 @@ export default function CloudCheckIn() {
     if (!story) { setMessage('写点故事吧~'); return; }
     setMessage('上传中...')
     
-    // 注意：这里我们简化了，不传图片，只传文字故事
     const { error } = await supabase.from('checkins').insert({
-      checkpoint_id: 1, // 暂时写死1，代表云打卡某个站点
+      checkpoint_id: 1,
       type: 'cloud',
       story: story,
-      user_id: '00000000-0000-0000-0000-000000000000'
+      user_id: '00000000-0000-0000-0000-000000000000' // 以后要改成真实 user.id
     })
 
     if (error) {
@@ -43,7 +43,8 @@ export default function CloudCheckIn() {
         提交云打卡
       </button>
       
-      <a href=" " className="block text-center mt-4 text-blue-500">⬅ 返回首页</a >
+      {/* 这里变成了 Link */}
+      <Link href="/" className="block text-center mt-4 text-blue-500">⬅ 返回首页</Link>
     </main>
   )
 }
