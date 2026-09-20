@@ -15,16 +15,43 @@ export default function Login() {
     setMessage('处理中...')
     if (isLogin) {
       const { error } = await supabase.auth.signInWithPassword({ email, password })
-      if (error) setMessage('登录失败：' + error.message)
-      else { setMessage('登录成功！即将跳转...'); setTimeout(() => router.push('/'), 1000); }
+      if (error) {
+        // Supabase 会把"邮箱未确认"也统一报成 Invalid login credentials
+        if (error.message.includes('Invalid login credentials')) {
+          setMessage('登录失败：邮箱未确认或密码错误。如果是新注册的账号，请先到邮箱点击确认链接')
+        } else {
+          setMessage('登录失败：' + error.message)
+        }
+      } else { setMessage('登录成功！即将跳转...'); setTimeout(() => router.push('/'), 1000); }
     } else {
-      const { error } = await supabase.auth.signUp({ 
-        email, 
+      const { data, error } = await supabase.auth.signUp({
+        email,
         password,
         options: { data: { username: email.split('@')[0] } }
       })
-      if (error) setMessage('注册失败：' + error.message)
-      else { setMessage('注册成功！请点击下方切换为登录'); setIsLogin(true); }
+      if (error) {
+        setMessage('注册失败：' + error.message)
+      } else {
+        // 同步创建 profile，供排行榜/集章/勋章/商店使用
+        if (data.user) {
+          const { error: pErr } = await supabase.from('profiles').insert({
+            id: data.user.id,
+            username: email.split('@')[0],
+            total_points: 0,
+            city: ''
+          })
+          if (pErr) console.error('创建 profile 失败：', pErr.message)
+        }
+        if (data.session) {
+          // 项目未开启邮箱确认：注册即登录
+          setMessage('注册成功！即将进入首页...')
+          setTimeout(() => router.push('/'), 1000)
+        } else {
+          // 项目开启了邮箱确认：需要先去邮箱点确认
+          setMessage('注册成功！请前往邮箱点击确认链接后，再回来登录')
+          setIsLogin(true)
+        }
+      }
     }
   }
 
