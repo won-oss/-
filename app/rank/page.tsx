@@ -183,7 +183,7 @@ export default function RankPage() {
 
   return (
     <main className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-2">🏆 铁路英雄榜</h1>
+      <h1 className="page-title mb-2">🏆 铁路英雄榜</h1>
       <p className="text-gray-600 mb-5">四大榜单，看看谁是最强铁路达人！</p>
 
       {/* Tab 切换 */}
@@ -192,8 +192,10 @@ export default function RankPage() {
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`py-2 rounded-lg text-sm font-bold transition-colors ${
-              tab === t.key ? 'bg-white text-blue-600 shadow' : 'text-gray-500 hover:text-gray-700'
+            className={`py-2 rounded-lg text-sm font-bold transition-all duration-200 ${
+              tab === t.key
+                ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md scale-[1.03]'
+                : 'text-gray-500 hover:text-gray-700 hover:bg-white/70'
             }`}
           >
             <span className="mr-0.5">{t.icon}</span>
@@ -210,8 +212,11 @@ export default function RankPage() {
 }
 
 function Row({ index, left, right }: { index: number; left: React.ReactNode; right: React.ReactNode }) {
+  const top3 = index === 0 || index === 1 || index === 2
   return (
-    <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+    <div className={`card-lift flex items-center justify-between p-3 rounded-lg border ${
+      top3 ? 'bg-gradient-to-r from-amber-50 to-orange-50 border-amber-200' : 'bg-white border-gray-100'
+    }`}>
       <div className="flex items-center gap-3">
         <span className={`font-bold text-xl w-6 text-center ${index === 0 ? 'text-yellow-500' : index === 1 ? 'text-gray-400' : index === 2 ? 'text-orange-400' : 'text-gray-300'}`}>
           {index === 0 || index === 1 || index === 2 ? index + 1 : <span className="text-sm">{index + 1}</span>}

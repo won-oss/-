@@ -100,18 +100,18 @@ export default function RunTrackPage() {
 
   return (
     <main className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">🏃 跑步轨迹</h1>
+      <h1 className="page-title mb-2">🏃 跑步轨迹</h1>
       <p className="text-gray-600 mb-6">实时在地图上点亮你的每一步足迹</p>
 
       {/* 数据面板 */}
-      <div className="bg-blue-50 p-4 rounded-lg mb-4 flex justify-between items-center">
+      <div className="card-lift bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-4 rounded-xl mb-4 flex justify-between items-center shadow-lg shadow-blue-200">
         <div>
-          <div className="text-sm text-gray-500">当前总距离</div>
-          <div className="text-2xl font-bold text-blue-600">{(totalDistance / 1000).toFixed(2)} 公里</div>
+          <div className="text-sm opacity-90">当前总距离</div>
+          <div className="text-2xl font-bold mt-0.5">{(totalDistance / 1000).toFixed(2)} 公里</div>
         </div>
         <div className="text-right">
-          <div className="text-sm text-gray-500">轨迹点</div>
-          <div className="text-2xl font-bold text-gray-700">{path.length}</div>
+          <div className="text-sm opacity-90">轨迹点</div>
+          <div className="text-2xl font-bold mt-0.5">{path.length}</div>
         </div>
       </div>
 
@@ -133,14 +133,14 @@ export default function RunTrackPage() {
       {/* 控制按钮 */}
       <div className="mt-4 space-y-3">
         {!isRunning ? (
-          <button onClick={startRun} className="w-full bg-green-500 text-white p-4 rounded-lg text-lg font-bold">
+          <button onClick={startRun} className="card-lift w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white p-4 rounded-xl text-lg font-bold shadow-lg shadow-green-200">
             ▶ 开始跑步
           </button>
         ) : (
           <button
             onClick={stopRun}
             disabled={saving || path.length === 0}
-            className="w-full bg-red-500 text-white p-4 rounded-lg text-lg font-bold disabled:opacity-50"
+            className="card-lift w-full bg-gradient-to-r from-red-500 to-rose-500 text-white p-4 rounded-xl text-lg font-bold shadow-lg shadow-red-200 disabled:opacity-50"
           >
             {saving ? '保存中...' : '⏹ 结束并保存轨迹'}
           </button>

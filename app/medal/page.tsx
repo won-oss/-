@@ -81,11 +81,11 @@ export default function MedalPage() {
 
   return (
     <main className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-2">🎖️ 奖牌勋章</h1>
+      <h1 className="page-title mb-2">🎖️ 奖牌勋章</h1>
       <p className="text-gray-600 mb-5">集齐站点，解锁属于你的铁路勋章！</p>
 
       {/* 进度卡片 */}
-      <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-white p-5 rounded-2xl mb-6 shadow-lg">
+      <div className="card-lift bg-gradient-to-r from-amber-400 to-orange-500 text-white p-5 rounded-2xl mb-6 shadow-lg shadow-orange-200">
         <div className="flex justify-between items-center">
           <div>
             <div className="text-sm opacity-90">当前集章进度</div>
@@ -111,11 +111,11 @@ export default function MedalPage() {
             const done = redeemed[medal.key]
             return (
               <div key={medal.key}
-                className={`rounded-2xl border p-5 flex items-center gap-4 transition-all ${
+                className={`card-lift rounded-2xl border p-5 flex items-center gap-4 transition-all ${
                   unlocked ? 'bg-white border-amber-300 shadow-md' : 'bg-gray-50 border-gray-200 opacity-80'
                 }`}
               >
-                <div className={`text-5xl ${unlocked ? '' : 'grayscale opacity-60'}`}>{medal.icon}</div>
+                <div className={`text-5xl ${unlocked ? 'animate-floaty' : 'grayscale opacity-60'}`} style={{ '--rot': '-6deg' } as any}>{medal.icon}</div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-gray-800">{medal.title}</span>

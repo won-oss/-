@@ -28,19 +28,19 @@ export default function CloudCheckIn() {
 
   return (
     <main className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">☁️ 云打卡</h1>
+      <h1 className="page-title mb-2">☁️ 云打卡</h1>
       <p className="text-gray-600 mb-4">无法到场？写下你的故事，同样能获得积分！</p >
       
-      {message && <div className="bg-blue-100 p-3 rounded mb-4">{message}</div>}
+      {message && <div className="bg-blue-100 border border-blue-200 text-blue-800 p-3 rounded-xl mb-4 animate-rise">{message}</div>}
 
       <textarea
-        className="w-full border rounded p-3 mb-4 h-32"
+        className="w-full border border-gray-200 bg-white/80 rounded-xl p-3 mb-4 h-32 focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all"
         placeholder="写下你和这条铁路的故事..."
         value={story}
         onChange={(e) => setStory(e.target.value)}
       />
-      <button onClick={submitCloud} className="w-full bg-blue-500 text-white p-3 rounded">
-        提交云打卡
+      <button onClick={submitCloud} className="card-lift w-full bg-gradient-to-r from-sky-500 to-blue-500 text-white p-3.5 rounded-xl font-bold shadow-lg shadow-sky-200">
+        ☁️ 提交云打卡
       </button>
       
       {/* 这里变成了 Link */}

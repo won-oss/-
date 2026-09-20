@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf6ee;
+  --foreground: #2b2118;
 }
 
 @theme inline {
@@ -12,15 +12,89 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(251, 191, 36, 0.20), transparent 60%),
+    radial-gradient(900px 450px at -10% 25%, rgba(59, 130, 246, 0.13), transparent 55%),
+    radial-gradient(700px 400px at 110% 70%, rgba(168, 85, 247, 0.10), transparent 55%),
+    linear-gradient(180deg, #fdfaf3 0%, #f6efe3 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* 顶部铁轨装饰：枕木 + 钢轨 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  z-index: 50;
+  background:
+    repeating-linear-gradient(90deg, #3b2f23 0 20px, #d9c79f 20px 26px);
+  border-bottom: 3px solid #8a6b3f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ============ 动效关键帧 ============ */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
+}
+@keyframes pop-in {
+  0% { transform: scale(0.5) rotate(-14deg); opacity: 0; }
+  70% { transform: scale(1.1) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+@keyframes train-move {
+  0% { transform: translateX(-30%); }
+  100% { transform: translateX(130%); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes rise-in {
+  0% { transform: translateY(14px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-floaty { animation: floaty 5s ease-in-out infinite; }
+.animate-pop { animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.animate-pulse-soft { animation: pulse-soft 2.4s ease-in-out infinite; }
+.animate-train { animation: train-move 8s linear infinite; }
+.animate-rise { animation: rise-in 0.5s ease-out both; }
+
+/* 流光文字 */
+.text-shimmer {
+  background: linear-gradient(90deg, #b45309, #dc2626, #f59e0b, #dc2626, #b45309);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* 卡片悬浮 */
+.card-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -8px rgba(59, 42, 20, 0.25);
+}
+
+/* 渐变标题通用样式 */
+.page-title {
+  @apply text-3xl font-black bg-gradient-to-r from-amber-700 via-red-600 to-orange-500 bg-clip-text text-transparent;
 }

@@ -131,7 +131,7 @@ export default function TeamPage() {
 
   return (
     <main className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">👥 组队巡游</h1>
+      <h1 className="page-title mb-2">👥 组队巡游</h1>
       <p className="text-gray-600 mb-6">和好友组队，一起打卡老成渝铁路！</p>
 
       {message && <div className="bg-yellow-100 p-3 rounded mb-4 text-sm">{message}</div>}
@@ -146,7 +146,7 @@ export default function TeamPage() {
       ) : myTeam ? (
         // 已加入战队：显示战队信息和成员列表
         <div>
-          <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-5 rounded-xl mb-6 shadow">
+          <div className="card-lift bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-5 rounded-xl mb-6 shadow-lg shadow-indigo-200">
             <div className="text-lg font-bold">🚩 {myTeam.name}</div>
             <div className="text-sm mt-1 opacity-90">加入码：<span className="font-mono font-bold">{myTeam.code}</span></div>
             <div className="text-sm mt-1">战队积分：{myTeam.total_points ?? 0} 分</div>
@@ -158,7 +158,7 @@ export default function TeamPage() {
           ) : (
             <div className="space-y-2">
               {members.map((m, i) => (
-                <div key={m.id || i} className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                <div key={m.id || i} className="card-lift flex items-center justify-between p-3 bg-white rounded-lg border border-gray-100">
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">
                       {(m.profiles?.username || '旅')[0]}

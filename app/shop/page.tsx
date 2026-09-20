@@ -80,11 +80,11 @@ export default function ShopPage() {
 
   return (
     <main className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-2">🏺 文创商店</h1>
+      <h1 className="page-title mb-2">🏺 文创商店</h1>
       <p className="text-gray-600 mb-5">用打卡积分兑换老成渝铁路文创</p>
 
       {/* 我的积分 */}
-      <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-4 rounded-xl mb-5 flex justify-between items-center shadow">
+      <div className="card-lift bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-4 rounded-xl mb-5 flex justify-between items-center shadow-lg shadow-indigo-200">
         <span className="font-bold">我的积分</span>
         <span className="text-2xl font-black">{loading ? '...' : points} 分</span>
       </div>
@@ -104,9 +104,9 @@ export default function ShopPage() {
             const canBuy = points >= g.price
             const done = owned[g.id]
             return (
-              <div key={g.id} className="bg-white rounded-xl border shadow-sm overflow-hidden flex flex-col">
+              <div key={g.id} className="card-lift group bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
                 <div className={`h-28 bg-gradient-to-br ${g.bg} flex items-center justify-center text-5xl`}>
-                  {g.emoji}
+                  <span className="transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-6">{g.emoji}</span>
                 </div>
                 <div className="p-3 flex flex-col flex-1">
                   <div className="font-bold text-gray-800 text-sm">{g.name}</div>

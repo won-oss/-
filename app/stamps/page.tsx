@@ -72,7 +72,7 @@ export default function StampsPage() {
 
   return (
     <main className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">🎫 动态集章</h1>
+      <h1 className="page-title mb-2">🎫 动态集章</h1>
       <p className="text-gray-600 mb-4">已打卡站点点亮彩色印章，未打卡显示灰色</p>
 
       {/* 进度条 */}
@@ -109,7 +109,7 @@ export default function StampsPage() {
                 key={cp.id}
                 className={`relative h-52 rounded-xl border-4 border-dashed p-3 flex flex-col items-center justify-center transition-all duration-300 ${
                   checked
-                    ? `${color.bg} ${color.border} shadow-lg ${color.rotate}`
+                    ? `animate-pop ${color.bg} ${color.border} shadow-lg ${color.rotate}`
                     : 'bg-gray-50 border-gray-200'
                 }`}
               >
