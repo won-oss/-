@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -50,7 +51,7 @@ export default function Login() {
         {isLogin ? '没有账号？去注册' : '已有账号？去登录'}
       </button>
       
-      <a href=" " className="block text-center mt-6 text-gray-500">⬅ 返回首页</a >
+      <Link href="/" className="block text-center mt-6 text-gray-500">⬅ 返回首页</Link>
     </main>
   )
 }

@@ -65,7 +65,7 @@ export default function Home() {
         {user ? (
           <span className="text-sm text-green-600 bg-green-50 px-2 py-1 rounded">已登录</span>
         ) : (
-          <a href=" " className="text-sm text-blue-500 underline">去登录</a >
+          <Link href="/login" className="text-sm text-blue-500 underline">去登录</Link>
         )}
       </div>
 
